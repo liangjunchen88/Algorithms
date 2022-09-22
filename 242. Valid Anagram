@@ -1,0 +1,12 @@
+# Runtime: 48 ms, faster than 93.95% of Python3 online submissions for Valid Anagram.
+# Memory Usage: 14.4 MB, less than 67.18% of Python3 online submissions for Valid Anagram.
+
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        l1 = {}
+        l2 = {}
+        for c in s:
+            l1[c] = 1 + l1.get(c,0)
+        for c1 in t:
+            l2[c1] = 1 + l2.get(c1,0)
+        return True if l1==l2 else False
