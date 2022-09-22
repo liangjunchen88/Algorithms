@@ -1,0 +1,14 @@
+# Runtime: 81 ms, faster than 90.93% of Python3 online submissions for Flood Fill.
+# Memory Usage: 14.3 MB, less than 14.27% of Python3 online submissions for Flood Fill.
+
+class Solution:
+    def floodFill(self, image: List[List[int]], sr: int, sc: int, color: int) -> List[List[int]]:
+        rows,cols, originalcolor = len(image), len(image[0]), image[sr][sc]
+        def theFlood (row, col):
+            if (not(0 <= row < rows and 0 <= col < cols)) or image[row][col] != originalcolor:
+                return 
+            image[row][col] = color
+            [theFlood(row+x, col+y) for (x, y) in [(1, 0), (0, 1), (-1, 0), (0, -1)]]
+        if image[sr][sc] != color:
+            theFlood(sr,sc)
+        return image
