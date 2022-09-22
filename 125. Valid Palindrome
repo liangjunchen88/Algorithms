@@ -1,0 +1,41 @@
+#Runtime: 157 ms, faster than 6.39% of Python3 online submissions for Valid Palindrome.
+#Memory Usage: 14.3 MB, less than 99.05% of Python3 online submissions for Valid Palindrome.
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        s1 = ""
+        for c in s:
+            if ord('A') <= ord(c) <= ord('Z'):
+                s1 += chr(ord(c) + ord('a') - ord('A'))
+            elif ord('a') <= ord(c) <= ord('z') or ord('0') <=ord(c) <= ord('9'):
+                s1 += c
+        return True if s1 ==s1[::-1] else False
+
+
+# Another solution
+# class Solution:
+#     def isPalindrome(self, s: str) -> bool:
+#         i = 0
+#         j = len(s) - 1
+#         while(i < j):
+#             while ord(s[i]) not in range(ord('a'),ord('z')+1) and ord(s[j]) not in range(ord('A'),ord('Z')+1) and ord(s[j]) not in range(ord('0'),ord('9')+1):
+#                 i += 1
+#                 if i >= j:break
+#             while ord(s[j]) not in range(ord('a'),ord('z')+1) and ord(s[j]) not in range(ord('A'),ord('Z')+1) and ord(s[j]) not in range(ord('0'),ord('9')+1):
+#                 j += -1
+#                 if i >= j: break
+#             if i >= j: break
+#             elif s[i]==s[j]:
+#                 i += 1
+#                 j += -1
+#             elif ord(s[i]) not in range(ord('0'),ord('9')+1) and ord(s[j]) not in range(ord('0'),ord('9')+1): 
+#                 if ord(s[i]) + ord('A') - ord('a') == ord(s[j]):
+#                     i += 1
+#                     j += -1 
+#                 elif ord(s[i]) - ord('A') + ord('a') == ord(s[j]):
+#                     i += 1
+#                     j += -1 
+#                 else: return False
+#             else:
+#                 return False
+#         return True
