@@ -1,0 +1,13 @@
+# Runtime: 211 ms, faster than 5.20% of Python3 online submissions for Lowest Common Ancestor of a Binary Search Tree.
+# Memory Usage: 18.7 MB, less than 96.96% of Python3 online submissions for Lowest Common Ancestor of a Binary Search Tree.
+
+class Solution:
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        while root:
+            if root.val > max(p.val, q.val):
+                root = root.left
+            elif root.val < min(p.val, q.val):
+                root = root.right
+            else:
+                return root
+        return None
