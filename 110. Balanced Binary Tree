@@ -1,0 +1,15 @@
+# Runtime: 55 ms, faster than 92.21% of Python3 online submissions for Balanced Binary Tree.
+# Memory Usage: 18.7 MB, less than 60.69% of Python3 online submissions for Balanced Binary Tree.
+
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        self.balance = True
+        def Balanced(node):
+            if not node:
+                return 0
+            l, r = Balanced(node.left), Balanced(node.right)
+            if abs(l - r) > 1:
+                self.balance = False
+            return max(l, r) + 1
+        Balanced(root)
+        return self.balance
