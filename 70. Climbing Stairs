@@ -1,0 +1,21 @@
+# Runtime: 60 ms, faster than 19.66% of Python3 online submissions for Climbing Stairs.
+# Memory Usage: 13.3 MB, less than 99.99% of Python3 online submissions for Climbing Stairs.
+
+class Solution:
+    def climbStairs(self, n):
+        a, b = 1, 1
+        for i in range(n):
+            a, b = b, a + b
+        return a
+
+
+# The way timeout but use the recursion to solve Fibonacci problem
+# class Solution:
+#     def climbStairs(self, n):
+#         if n == 0:
+#             return 0
+#         if n == 1:
+#             return 1
+#         if n == 2:
+#             return 2
+#         return self.climbStairs(n-1)+self.climbStairs(n-2)
