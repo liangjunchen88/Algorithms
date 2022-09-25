@@ -1,4 +1,4 @@
-# Runtime: 54 ms, faster than 83.16% of Python3 online submissions for Diameter of Binary Tree.
+# Runtime: 47 ms, faster than 93.07% of Python3 online submissions for Diameter of Binary Tree.
 # Memory Usage: 16.3 MB, less than 84.91% of Python3 online submissions for Diameter of Binary Tree.
 
 
@@ -6,9 +6,10 @@ class Solution:
     def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         self.ans = 0
         def depth(p: Optional[TreeNode]) -> int:
-            if not p: return 0
-            l, r = depth(p.left), depth(p.right)
-            self.ans = max(self.ans, l + r)
-            return 1 + max(l, r)
+            if not p :
+                return 0
+            lDepth, rDepth = depth(p.left), depth(p.right)
+            self.ans = max(self.ans, lDepth + rDepth)
+            return 1 + max(lDepth, rDepth)
         depth(root)
         return self.ans
