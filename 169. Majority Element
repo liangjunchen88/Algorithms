@@ -1,0 +1,31 @@
+# Runtime: 292 ms, faster than 47.95% of Python3 online submissions for Majority Element.
+# Memory Usage: 15.5 MB, less than 34.29% of Python3 online submissions for Majority Element.
+
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        a = {}
+        for i in nums:
+            a[i] = 1 + a.get(i, 0)
+            if a[i] > len(nums)//2:
+                return i
+                
+# some tricky
+# Runtime: 174 ms, faster than 92.95% of Python3 online submissions for Majority Element.
+# Memory Usage: 15.6 MB, less than 34.29% of Python3 online submissions for Majority Element.
+
+# class Solution:
+#     def majorityElement(self, nums: List[int]) -> int:
+#         nums.sort()
+#         return nums[len(nums)//2]
+
+# Timeout
+# class Solution:
+#     def majorityElement(self, nums: List[int]) -> int:
+#         ans = 0
+#         count = 0
+#         for i in nums:
+#             if nums.count(i) > count:
+#                 count = nums.count(i)
+#                 ans = i
+#         return ans
+            
