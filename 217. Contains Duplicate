@@ -1,0 +1,22 @@
+# Runtime: 464 ms, faster than 96.07% of Python3 online submissions for Contains Duplicate.
+# Memory Usage: 25.9 MB, less than 66.79% of Python3 online submissions for Contains Duplicate.
+
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        a = {}
+        for i in nums:
+            if a.get(i, 0) == 0:
+                a[i] = 1
+            else:
+                return True
+        return False
+
+
+# Another tricky but interesting method
+# Runtime: 1306 ms, faster than 5.04% of Python3 online submissions for Contains Duplicate.
+# Memory Usage: 25.9 MB, less than 66.79% of Python3 online submissions for Contains Duplicate.
+
+# class Solution:
+#     def containsDuplicate(self, nums: List[int]) -> bool:
+#         return False if len(nums) ==len(set(nums)) else True
+    
