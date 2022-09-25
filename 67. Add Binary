@@ -1,0 +1,16 @@
+# Runtime: 55 ms, faster than 54.01% of Python3 online submissions for Add Binary.
+# Memory Usage: 13.7 MB, less than 97.73% of Python3 online submissions for Add Binary.
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        t = 0
+        res = ''
+        a1, b1 = list(a), list(b)
+        while a1 or b1 or t:
+            if a1:
+                t += int(a1.pop())
+            if b1:
+                t += int(b1.pop())
+            res += str(t % 2)
+            t //= 2
+        return res[:: -1]
