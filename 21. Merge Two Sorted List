@@ -1,3 +1,6 @@
+# Runtime: 39 ms, faster than 92.91% of Python3 online submissions for Merge Two Sorted Lists.
+# Memory Usage: 13.9 MB, less than 79.52% of Python3 online submissions for Merge Two Sorted Lists.
+
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
         cur = dummy = ListNode()
