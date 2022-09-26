@@ -12,3 +12,14 @@ class Solution:
             else:
                 heapq.heappush(heap, (dis,x,y))
         return [(x,y) for (dis,x,y) in heap]
+
+
+
+# Runtime: 1873 ms, faster than 21.51% of Python3 online submissions for K Closest Points to Origin.
+# Memory Usage: 20.3 MB, less than 61.77% of Python3 online submissions for K Closest Points to Origin.
+
+# import heapq
+# class Solution:
+#     def kClosest(self, points: List[List[int]], k: int) -> List[List[int]]:
+#         points.sort(key = lambda P: P[0]**2 + P[1]**2)
+#         return points[:k]
