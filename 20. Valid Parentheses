@@ -1,3 +1,6 @@
+# Runtime: 43 ms, faster than 72.39% of Python3 online submissions for Valid Parentheses.
+# Memory Usage: 14 MB, less than 26.59% of Python3 online submissions for Valid Parentheses.
+
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
