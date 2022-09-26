@@ -1,0 +1,12 @@
+# Runtime: 80 ms, faster than 97.46% of Python3 online submissions for Insert Interval.
+# Memory Usage: 17.6 MB, less than 5.98% of Python3 online submissions for Insert Interval.
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        s, e = newInterval[0], newInterval[1]
+        left = [i for i in intervals if i[1] < s]
+        right = [j for j in intervals if j[0] > e]
+        if left + right != intervals:
+            s = min(intervals[len(left)][0], s)
+            e = max(intervals[~len(right)][1], e)
+        return left + [[s, e]] + right
