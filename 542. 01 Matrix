@@ -1,0 +1,22 @@
+# Runtime: 691 ms, faster than 90.79% of Python3 online submissions for 01 Matrix.
+# Memory Usage: 17.1 MB, less than 57.61% of Python3 online submissions for 01 Matrix.
+
+class Solution:
+    def updateMatrix(self, mat: List[List[int]]) -> List[List[int]]:
+        m, n = len(mat), len(mat[0])
+        a = deque()
+        move = [0, 1, 0, -1, 0]
+        for i in range(m):
+            for j in range(n):
+                if mat[i][j] == 0:
+                    a.append((i,j))
+                else:
+                    mat[i][j] = -1
+        while a:
+            r, c = a.popleft()
+            for k in range(4):
+                nr, nc = r+move[k], c+move[k+1]
+                if (0<=nr<m) and (0<=nc<n) and mat[nr][nc] ==-1:
+                    mat[nr][nc] = mat[r][c] + 1
+                    a.append((nr,nc))
+        return mat
