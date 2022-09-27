@@ -1,0 +1,14 @@
+# Runtime: 44 ms, faster than 78.95% of Python3 online submissions for Binary Tree Level Order Traversal.
+# Memory Usage: 14.2 MB, less than 84.06% of Python3 online submissions for Binary Tree Level Order Traversal.
+
+class Solution:
+    def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
+        if not root: return []
+        res, nodes = [],[root]
+        while nodes:
+            res.append([node.val for node in nodes])
+            temp = []
+            for n in nodes:
+                temp.extend([n.left, n.right])
+            nodes = [l for l in temp if l]
+        return res
