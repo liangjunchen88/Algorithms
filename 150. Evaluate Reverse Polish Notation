@@ -1,0 +1,21 @@
+# Runtime: 69 ms, faster than 94.17% of Python3 online submissions for Evaluate Reverse Polish Notation.
+# Memory Usage: 14.3 MB, less than 95.95% of Python3 online submissions for Evaluate Reverse Polish Notation.
+
+class Solution:
+    def evalRPN(self, tokens: List[str]) -> int:
+        stack = []
+        for c in tokens:
+            if c in '+-*/':
+                r, l = stack.pop(), stack.pop()  
+                if c == '+':
+                    stack.append(l + r)
+                elif c == '-':
+                    stack.append(l - r)
+                elif c == '*':
+                    stack.append(l * r)
+                elif c == '/':
+                    stack.append(int(l / r))
+            else:
+                stack.append(int(c))
+        return stack.pop()
+                
