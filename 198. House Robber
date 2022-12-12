@@ -1,0 +1,28 @@
+Runtime
+31 ms
+Beats
+94.99%
+Memory
+13.9 MB
+Beats
+20.36%
+
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        num_house = len(nums)
+        moneys = [0] * num_house
+        if num_house == 0:
+            return 0
+        elif num_house == 1:
+            return nums[0]
+        elif num_house == 2:
+            return max(nums[0],nums[1])
+        
+        for i in range(2):
+            moneys[i] = nums[i]
+        moneys[2] = moneys[0] + nums[2]
+        for i in range(3,num_house):
+            for j in range(2,4):
+                if moneys[i] < moneys[i-j] + nums[i]:
+                    moneys[i] = moneys[i-j] + nums[i]
+        return max(moneys[num_house-1],moneys[num_house-2])
