@@ -1,0 +1,29 @@
+Runtime
+2219 ms
+Beats
+70.90%
+Memory
+14.2 MB
+Beats
+86.84%
+
+from math import inf
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        num = [inf]*amount
+        min_amount = min(coins)
+        if coins == []:
+            return -1
+        if amount == 0:
+            return 0
+        for coin in coins:
+            if coin-1 in range(amount):
+                num[coin-1] = 1
+        for i in range(min_amount, amount):
+            for coin in coins:
+                if i-coin in range(amount) and num[i] > num[i-coin] :
+                    num[i] = num[i-coin] + 1
+        if num[amount-1] != inf:
+            return int(num[amount-1])
+        else:
+            return -1
