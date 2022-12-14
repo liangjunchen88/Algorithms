@@ -1,0 +1,26 @@
+Runtime
+51 ms
+Beats
+85.25%
+Memory
+16.5 MB
+Beats
+80.19%
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+from math import inf
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        return self.valid(root, -inf, inf)
+    def valid(self, root, low = -inf, high = inf):
+            if not root:
+                return True
+            if root.val >= high or root.val <= low:
+                return False
+            return self.valid(root.left, low, root.val) and self.valid (root.right, root.val, high) 
