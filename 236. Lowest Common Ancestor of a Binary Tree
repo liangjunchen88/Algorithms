@@ -1,0 +1,34 @@
+Runtime
+63 ms
+Beats
+98.97%
+Memory
+26.2 MB
+Beats
+65.22%
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    
+    def __init__(self):
+        self.res = None
+
+    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+        self.findNode(root, p, q)
+        return self.res
+
+    def findNode(self, root, p, q):
+        if not root:
+            return False
+        mid = (root==p or root==q)
+        left = self.findNode(root.left, p, q)
+        right = self.findNode(root.right, p, q)
+        if mid + left + right >= 2:
+            self.res = root
+        return mid or left or right
