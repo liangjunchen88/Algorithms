@@ -1,0 +1,25 @@
+Runtime
+198 ms
+Beats
+72.92%
+Memory
+18.1 MB
+Beats
+54.51%
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        if not intervals:
+            return []
+        res = []
+        sortInterval = sorted(intervals, key= lambda x: x[0])
+        lastEnd = 0
+        for interval in sortInterval:
+            if interval[0] <= lastEnd and res:
+                preInterval = res.pop()
+                lastEnd =  max(interval[1],preInterval[1])
+                res.append([preInterval[0], lastEnd])
+            else:
+                res.append(interval)
+                lastEnd = interval[1]
+        return res
