@@ -1,0 +1,24 @@
+Runtime
+47 ms
+Beats
+81.92%
+Memory
+14 MB
+Beats
+84.11%
+
+class Solution:
+    def permute(self, nums: List[int]) -> List[List[int]]:
+        if not nums:
+            return []
+        res  = []
+        self.dfs(res, nums, [])
+        return res
+
+    def dfs(self, res, nums, path):
+        if not nums:
+            res.append(path)
+            path = []
+
+        for i in range(len(nums)):
+            self.dfs(res, nums[:i]+nums[i+1:], path+[nums[i]])
