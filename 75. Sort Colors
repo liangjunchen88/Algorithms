@@ -1,0 +1,30 @@
+Runtime
+36 ms
+Beats
+90.28%
+Memory
+13.8 MB
+Beats
+97.72%
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        red, white, blue = -1, -1, 0
+        while blue < len(nums):
+            if nums[blue] == 0:
+                red += 1
+                nums[red] = 0
+                if white != -1:
+                    white += 1
+                    nums[white] = 1
+            elif nums[blue] == 1:
+                if white == -1:
+                    white = red
+                white += 1
+                nums[white] = 1
+            if red< blue and white < blue:
+                nums[blue] = 2
+            blue += 1
