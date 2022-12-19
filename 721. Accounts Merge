@@ -1,0 +1,41 @@
+Runtime
+215 ms
+Beats
+88.53%
+Memory
+19 MB
+Beats
+49.27%
+
+class Solution:
+    def accountsMerge(self, accounts: List[List[str]]) -> List[List[str]]:
+        visit = [False]*len(accounts)
+        emails_map = {}
+        res = []
+
+        for i,account in enumerate(accounts):
+            for j in range(1, len(account)):
+                if emails_map.get(account[j],0) == 0:
+                    emails_map[account[j]] = []
+                emails_map[account[j]].append(i) 
+        
+        for i,account in enumerate(accounts):
+            if visit[i]:
+                continue
+            name = account[0]
+            emails = set()
+            self.dfs(visit, i, accounts, emails_map, emails)
+            res.append([name] + sorted(list(emails)))
+        
+        return res
+
+    def dfs(self, visit, i, accounts, emails_map, emails):
+        if visit[i]:
+            return 
+        
+        visit[i] = True
+        for j in range(1, len(accounts[i])):
+            email = accounts[i][j]
+            emails.add(email)
+            for neighbor in emails_map[email]:
+                self.dfs(visit, neighbor, accounts, emails_map, emails)
