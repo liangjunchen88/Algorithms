@@ -1,0 +1,33 @@
+Runtime
+107 ms
+Beats
+9.12%
+Memory
+14 MB
+Beats
+71.45%
+
+class Solution:
+    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+        if not s:
+            return True
+        if not wordDict:
+            return False
+
+        table = [0]*len(s)
+        min_length = len(s)
+        for word in wordDict:
+            if len(s)>=len(word) and s[:len(word)] == word:
+                table[len(word)-1] = 1
+            if len(word) < min_length:
+                min_length = len(word)
+        
+        for i in range(min_length, len(s)):
+            for word in wordDict:
+                if len(word)<=i:
+                    if table[i-len(word)]==1 and s[:i+1] == s[:i+1-len(word)]+word:
+                        table[i] = 1
+
+        print(table)
+                    
+        return True if table[-1] == 1 else False
