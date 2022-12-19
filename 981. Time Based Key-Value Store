@@ -1,0 +1,70 @@
+Runtime
+622 ms
+Beats
+99.55%
+Memory
+71.7 MB
+Beats
+52.63%
+
+class TimeMap:
+    
+    # #1 by using hash map: time out
+    # def __init__(self):
+    #     self.map = {}
+
+    # def set(self, key: str, value: str, timestamp: int) -> None:
+    #     if not key in self.map:
+    #         self.map[key] = {}
+    #     self.map[key][timestamp] = value
+        
+
+    # def get(self, key: str, timestamp: int) -> str:
+    #     if not key in self.map:
+    #         return ""
+        
+    #     for i in reversed(range(1, timestamp+1)):
+    #         if self.map[key].get(i, 0) != 0:
+    #             return self.map[key][i]
+
+    #     return ""
+
+    #2 Binary search:
+    def __init__(self):
+        self.map = {}
+
+    def set(self, key: str, value: str, timestamp: int) -> None:
+        if not key in self.map:
+            self.map[key] = []
+        self.map[key].append((timestamp, value))
+        #self.map[key].sort(reverse = True, key = lambda x: x[0])
+        
+
+    def get(self, key: str, timestamp: int) -> str:
+        if not key in self.map:
+            return ""
+
+        if self.map[key][0][0] > timestamp:
+            return ""
+        
+        left = 0
+        right = len(self.map[key])-1
+        while left<right:
+            if timestamp >= self.map[key][right][0]:
+                return self.map[key][right][1]
+            mid = (left+right)//2
+            if self.map[key][mid][0] == timestamp:
+                return self.map[key][mid][1]
+            elif self.map[key][mid][0] > timestamp:
+                left = mid + 1
+            else:
+                right = mid -1
+        return self.map[key][left][1]
+
+
+
+
+# Your TimeMap object will be instantiated and called as such:
+# obj = TimeMap()
+# obj.set(key,value,timestamp)
+# param_2 = obj.get(key,timestamp)
