@@ -1,0 +1,21 @@
+Runtime
+1004 ms
+Beats
+82.13%
+Memory
+13.9 MB
+Beats
+97.30%
+
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total_sum = sum(nums)
+        if total_sum % 2 != 0:
+            return False
+        sub_total = total_sum // 2
+        dp = [False]*(sub_total+1)
+        dp[0] = True
+        for num in nums:
+            for i in range(sub_total, num-1, -1):
+                dp[i] = dp[i] or dp[i-num]
+        return dp[sub_total]
