@@ -1,0 +1,24 @@
+Runtime
+64 ms
+Beats
+49.86%
+Memory
+14.2 MB
+Beats
+36.63%
+
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        def backtrack(len_subset, start = 0, cur=[]):
+            if len(cur)==len_subset:
+                output.append(cur[:])
+                return
+            for i in range(start, len(nums)):
+                cur.append(nums[i])
+                backtrack(len_subset, i+1, cur)
+                cur.pop()
+        
+        output = []
+        for i in range(len(nums)+1):
+            backtrack(i)
+        return output
