@@ -1,0 +1,60 @@
+Runtime
+33 ms
+Beats
+89.47%
+Memory
+14 MB
+Beats
+34.62%
+
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        if not matrix:
+            return []
+        nRow = len(matrix)
+        nCol = len(matrix[0])
+        lable = 1
+        res = []
+        i, j = 0, 0
+        left, right, up, down = -1, nCol, -1, nRow
+        while lable != 0:
+            lable = 0 
+            while j<right:
+                res.append(matrix[i][j])
+                j += 1
+                lable = 1
+            j -= 1
+            right = j  
+            up = i 
+            i += 1
+            if lable!= 1:
+                break
+            while i<down:
+                res.append(matrix[i][j])
+                i += 1
+                lable = 2
+            i-=1
+            down = i
+            j-=1
+            print(lable)
+            if lable != 2:
+                break
+            while j>left:
+                res.append(matrix[i][j])
+                j -= 1
+                lable = 3
+            j += 1
+            left = j
+            i -= 1
+            if lable != 3:
+                break
+            while i>up:
+                res.append(matrix[i][j])
+                i -= 1
+                lable = 4
+            i += 1
+            up = i
+            j+=1
+            if lable != 4:
+                break
+        return res
