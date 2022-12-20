@@ -7,6 +7,7 @@ Memory
 Beats
 36.63%
 
+#1 backtrack
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         def backtrack(len_subset, start = 0, cur=[]):
@@ -22,3 +23,15 @@ class Solution:
         for i in range(len(nums)+1):
             backtrack(i)
         return output
+
+#2 dfs
+class Solution(object):
+    def subsets(self, nums):
+        res = []
+        self.dfs(nums, [], res)
+        return res
+    
+    def dfs(self, nums, path, res):
+        res.append(path)
+        for i in range(len(nums)):
+            self.dfs(nums[i+1:], path+[nums[i]], res)
