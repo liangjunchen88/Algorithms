@@ -1,0 +1,35 @@
+Runtime
+44 ms
+Beats
+72.93%
+Memory
+13.8 MB
+Beats
+71.83%
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+
+#BFS
+class Solution:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
+        if not root:
+            return []
+        res = []
+        cur_level = [root]
+        next_level = []
+        while cur_level:
+            res.append(cur_level[-1].val)
+            for node in cur_level:
+                if node:
+                    if node.left:
+                        next_level.append(node.left)
+                    if node.right:
+                        next_level.append(node.right)
+            cur_level = next_level
+            next_level = []
+        return res
