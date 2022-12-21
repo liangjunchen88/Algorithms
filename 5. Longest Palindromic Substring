@@ -21,11 +21,8 @@ Beats
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         #1
-        dp = []
+        dp = [[False for i in range(len(s))] for i in range(len(s))]
         longest = s[0]
-        for i in range(len(s)):
-            temp = [False]*len(s)
-            dp.append(temp)
         for i in range(len(s)):
             dp[i][i] = True
             if i < len(s)-1:
