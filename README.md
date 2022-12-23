@@ -1,2 +1,2 @@
-# Algorithms-Leetcode
-This is a record of algorithms solution on Leetcode website
+# Algorithms
+This is a record of algorithms solution when I am practicing how to solve all kinds of problems.
