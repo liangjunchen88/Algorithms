@@ -1,0 +1,37 @@
+Runtime
+8241 ms
+Beats
+17.1%
+Memory
+13.8 MB
+Beats
+93.40%
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        def backtrack(row, col, word):
+            if len(word)==0:
+                return True
+            
+            if row<0 or row >= len_col or col<0 or col >= len_row or board[row][col]!=word[0]:
+                return False
+
+            board[row][col] = '*'
+            res = False
+            for i,j in [(0,1), (0,-1), (1,0), (-1,0)]:
+                res = backtrack(row+i, col+j, word[1:])
+                if res:
+                    break
+            board[row][col] = word[0]
+            return res
+
+        if not board:
+            return False
+        len_row = len(board[0])
+        len_col = len(board)
+
+        for i in range(len_col):
+            for j in range(len_row):
+                if backtrack(i, j, word):
+                    return True
+        return False
