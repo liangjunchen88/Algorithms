@@ -1,2 +1,2 @@
 # Algorithms
-This is a record of algorithms solution when I am practicing how to solve all kinds of problems.
+This is a collection of algorithms solutions that I came up with to solve all kinds of algorithm chanllenges.
