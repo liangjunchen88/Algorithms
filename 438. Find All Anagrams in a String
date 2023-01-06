@@ -1,0 +1,55 @@
+#1
+
+Runtime
+874 ms
+Beats
+19.96%
+Memory
+15.2 MB
+Beats
+80.9%
+
+from collections import Counter
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        ns, np = len(s), len(p)
+        if ns<np:
+            return []
+        count_p = Counter(p)
+        count_s = Counter()
+        for i in range(ns):
+            count_s[s[i]] += 1
+            if i >= np:
+                if count_s[s[i-np]] == 1:
+                    del count_s[s[i-np]]
+                else:
+                    count_s[s[i-np]] -= 1
+            if count_p == count_s:
+                res.append(i-np+1)
+        return res
+        
+        
+Runtime
+110 ms
+Beats
+92.89%
+Memory
+15.2 MB
+Beats
+33.10%
+
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        res = []
+        ns, np = len(s), len(p)
+        count_p, count_s = [0]*26, [0]*26
+        for i in range(np):
+            count_p[ord(p[i])-ord('a')] += 1
+        for j in range(ns):
+            count_s[ord(s[j])-ord('a')] += 1
+            if j >= np:
+                count_s[ord(s[j-np])-ord('a')] -= 1
+            if count_s == count_p:
+                res.append(j-np+1)
+        return res
