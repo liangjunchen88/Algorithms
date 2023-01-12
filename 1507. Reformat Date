@@ -1,0 +1,17 @@
+Runtime
+30 ms
+Beats
+90.36%
+Memory
+13.8 MB
+Beats
+71.23%
+
+class Solution:
+    def reformatDate(self, date: str) -> str:
+        month = {"Jan":"01", "Feb":"02", "Mar":"03", "Apr":"04", "May":"05", "Jun":"06", "Jul":"07", "Aug":"08", "Sep":"09", "Oct":"10", "Nov":"11", "Dec":"12"}
+        if len(date) == 12:
+            res = date[-4:] + "-" + month[date[4:7]] + "-0" + date[0]
+        else:
+            res = date[-4:] + "-" + month[date[5:8]] + "-" + date[0:2]
+        return res
