@@ -1,0 +1,26 @@
+Runtime
+897 ms
+Beats
+80.53%
+Memory
+14.1 MB
+Beats
+22.25%
+
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        diff = float('inf')
+        nums.sort()
+        for i in range(len(nums)):
+            low, high = i+1, len(nums)-1
+            while low < high:
+                sum = nums[i] + nums[low] + nums[high]
+                if abs(diff) > abs(target - sum):
+                    diff = target - sum
+                if diff == 0:
+                    return target
+                if sum < target:
+                    low += 1
+                else:
+                    high -= 1
+        return int(target - diff)
