@@ -1,0 +1,22 @@
+Runtime
+480 ms
+Beats
+90.39%
+Memory
+18.8 MB
+Beats
+84.82%
+
+class Solution:
+    def sumSubarrayMins(self, arr: List[int]) -> int:
+        MOD = 10 ** 9 +7
+        stack = []
+        sum_min = 0
+        for i in range(len(arr)+1):
+            while stack and (i == len(arr) or arr[stack[-1]] >= arr[i]):
+                mid = stack.pop()
+                left = stack[-1] if stack else -1
+                right = i
+                sum_min += arr[mid] * (mid - left) * (right - mid)
+            stack.append(i)
+        return sum_min % MOD
