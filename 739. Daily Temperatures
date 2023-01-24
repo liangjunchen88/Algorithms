@@ -1,0 +1,19 @@
+Runtime
+1424 ms
+Beats
+81.94%
+Memory
+36.9 MB
+Beats
+5.72%
+
+class Solution:
+    def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
+        stack = []
+        record = {}
+        for i in range(len(temperatures)):
+            while stack and temperatures[stack[-1]] < temperatures[i]:
+                last = stack.pop()
+                record[last] = i - last
+            stack.append(i)
+        return [record.get(j, 0) for j in range(len(temperatures))]
