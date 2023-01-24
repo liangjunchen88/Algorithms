@@ -1,0 +1,21 @@
+Runtime
+75 ms
+Beats
+54.35%
+Memory
+14.1 MB
+Beats
+52.14%
+
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        stack = []
+        record = {}
+        res = []
+        for i in range(len(nums2)):
+            while stack and nums2[stack[-1]] <= nums2[i]:
+                record[nums2[stack.pop()]] = nums2[i]
+            stack.append(i)
+        for j in nums1:
+            res.append(record.get(j, -1))
+        return res
