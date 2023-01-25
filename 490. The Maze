@@ -1,3 +1,8 @@
+
+# BFS 
+1. use que
+2. record visited
+
 Runtime
 271 ms
 Beats
@@ -35,3 +40,42 @@ class Solution:
                     Q.append([row, col])
         
         return False
+
+# DFS
+recursion
+
+Runtime
+279 ms
+Beats
+86.29%
+Memory
+16.1 MB
+Beats
+30.27%
+
+class Solution:
+    def hasPath(self, maze: List[List[int]], start: List[int], destination: List[int]) -> bool:
+        if not maze:
+            return False
+        
+        m, n = len(maze), len(maze[0])
+        dirs = ((1,0), (-1,0), (0,1), (0,-1))
+        
+        def dfs(row, col):
+            if maze[row][col] == -1:
+                return False
+            maze[row][col] = -1
+            if [row, col] == destination:
+                return True
+
+            for x, y in dirs:
+                i, j = row, col
+                while 0 <= i+x < m and 0 <= j+y < n and maze[i+x][j+y] != 1:
+                    i += x
+                    j += y
+                if dfs(i, j):
+                    return True
+            return False 
+
+        row, col = start
+        return dfs(row, col)
