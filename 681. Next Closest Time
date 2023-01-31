@@ -1,0 +1,24 @@
+Runtime
+35 ms
+Beats
+75.58%
+Memory
+13.8 MB
+Beats
+78.88%
+
+class Solution:
+    def nextClosestTime(self, time: str) -> str:
+        hour, minute = time.split(":")
+        nums = sorted(set(hour + minute))
+        two_digits = [i+j for i in nums for j in nums]
+        
+        i_minute = two_digits.index(minute)
+        if i_minute+1 < len(two_digits) and two_digits[i_minute+1] < "60":
+            return hour + ":" + two_digits[i_minute+1]
+
+        i_hour = two_digits.index(hour)
+        if i_hour+1 < len(two_digits) and two_digits[i_hour+1] < "24":
+            return two_digits[i_hour+1] + ":" + two_digits[0]
+
+        return two_digits[0] + ":" + two_digits[0]
