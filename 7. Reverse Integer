@@ -1,0 +1,18 @@
+Runtime
+29 ms
+Beats
+92.46%
+Memory
+13.9 MB
+Beats
+12.15%
+
+class Solution:
+    def reverse(self, x: int) -> int:
+        sign = 1 if x>0 else -1
+        num = str(abs(x))
+        res = ""
+        for c in num:
+            res = c + res
+        value = sign * int(res)
+        return value if -2**31<value<2**31 else 0
