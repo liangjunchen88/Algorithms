@@ -1,0 +1,27 @@
+Runtime
+1073 ms
+Beats
+94.37%
+Memory
+15.2 MB
+Beats
+19.72%
+
+class Solution:
+    def minDominoRotations(self, tops: List[int], bottoms: List[int]) -> int:
+        def check(value):
+            count_tops, count_bottoms = 0, 0
+            for i in range(len(tops)):
+                if tops[i] != value and bottoms[i] != value:
+                    return -1
+                elif tops[i] != value:
+                    count_tops += 1
+                elif bottoms[i] != value:
+                    count_bottoms += 1
+            return min(count_tops, count_bottoms)
+        
+        res = check(tops[0])
+        if res != -1 or tops[0] == bottoms[0]:
+            return res
+        else:
+            return check(bottoms[0])
